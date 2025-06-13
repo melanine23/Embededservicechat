@@ -1,0 +1,43 @@
+<HTML>
+<script type='text/javascript'>
+	function initEmbeddedMessaging() {
+		try {
+			// Set language
+			embeddedservice_bootstrap.settings.language = 'fr';
+
+			// Shared image URL
+			const imageURL = 'https://saur-services--pilotai.sandbox.file.force.com/sfc/servlet.shepherd/version/renditionDownload?rendition=ORIGINAL_Jpeg&versionId=068AP000009ODgT&operationContext=CHATTER&contentId=05TAP00000DwjOf';
+
+			// Customize embedded messaging appearance
+			embeddedservice_bootstrap.settings.avatarImgURL = imageURL;         // Agent avatar
+			embeddedservice_bootstrap.settings.botAvatarImgURL = imageURL;      // Bot avatar
+			embeddedservice_bootstrap.settings.chatButtonImgURL = imageURL;     // Chat button image
+			embeddedservice_bootstrap.settings.chatButtonBackgroundColor = '#003B5B'; // Solid background
+			embeddedservice_bootstrap.settings.embeddedServiceBranding = {
+				navBarColor: '#003B5B',              // Header background color
+				navBarTextColor: '#FFFFFF',          // Header text color
+				brandingHeaderLogoUrl: imageURL      // Logo in the header
+			};
+
+			// Auto-open chat after init
+			embeddedservice_bootstrap.postBootCallback = function () {
+				embeddedservice_bootstrap.startEmbeddedMessaging();
+			};
+
+			// Initialize chat
+			embeddedservice_bootstrap.init(
+		'00DAP00000Bj6cP',
+		'Test_SAUR',
+		'https://saur-services--pilotai.sandbox.my.site.com/ESWTestSAUR1746518128317',
+		{
+			scrt2URL: 'https://saur-services--pilotai.sandbox.my.salesforce-scrt.com'
+		}
+	);
+		} catch (err) {
+			console.error('Error loading Embedded Messaging: ', err);
+		}
+	}
+</script>
+
+<script type='text/javascript' src='https://saur-services--pilotai.sandbox.my.site.com/ESWTestSAUR1746518128317/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+</HTML>
